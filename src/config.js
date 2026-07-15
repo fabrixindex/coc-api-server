@@ -5,7 +5,12 @@ export const TOKEN = process.env.TOKEN;
 export const CLAN = process.env.CLAN;
 export const LEAGUEID = process.env.LEAGUEID;
 export const SEASONID = process.env.SEASONID;
-export const FRONTEND_URL = process.env.FRONTEND_URL || '*';
+// FRONTEND_URL puede tener uno o varios orígenes separados por coma, ej:
+// FRONTEND_URL=http://localhost:5173,https://tu-app.vercel.app
+export const ALLOWED_ORIGINS = (process.env.FRONTEND_URL || '*')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 // IDs de ubicación de Clash of Clans (fijos, no dependen del clan)
 export const ARGENTINA_LOCATION_ID = '32000017';
